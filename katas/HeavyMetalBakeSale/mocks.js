@@ -2,7 +2,7 @@ export const quantities = {
   Brownie: 10,
   Muffin: 10,
   CakePop: 10,
-  water: 10
+  Water: 10
 }
 
 export const lowQuantity = {

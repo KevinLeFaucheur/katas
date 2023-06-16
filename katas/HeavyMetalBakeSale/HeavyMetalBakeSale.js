@@ -3,30 +3,43 @@ export const buy = (list, given) => {
   calculateChange(total, given);
 }
 
-export const purchase = (list) => {
+export const purchase = (list, stocks) => {
   let items = list.split(',');
   let total = 0;
+  let outOfStocks = false;
 
   items.forEach(item => {
     switch (item) {
       case 'B':
-        total += 0.75;
+        if(stocks.Brownie > 0) {
+          total += 0.75;
+          stocks.Brownie--;
+        } else outOfStocks = true;
         break;
       case 'M':
-        total += 1.00;
+        if(stocks.Muffin > 0) {
+          total += 1.00;
+          stocks.Muffin--;
+        } else outOfStocks = true;
         break;
       case 'C':
-        total += 1.35;
+        if(stocks.CakePop > 0) {
+          total += 1.35;
+          stocks.CakePop--;
+        } else outOfStocks = true;
         break;
       case 'W':
-        total += 1.50;
+        if(stocks.Water > 0) {
+          total += 1.50;
+          stocks.Water--;
+        } else outOfStocks = true;
         break;
       default:
         break;
     }
   });
 
-  return `$${total.toFixed(2)}`;
+  return outOfStocks ? 'Out of stocks' : `$${total.toFixed(2)}`;
 }
 
 export const calculateChange = (total, given) => {
