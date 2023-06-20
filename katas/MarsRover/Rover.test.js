@@ -42,3 +42,9 @@ it('should turn from west to south', () => {
   Move(rover, 'R');
   expect(rover.direction).toBe('E');
 })
+
+// Multiple commands
+it('should move twice forward', () => {
+  let rover = MarsRover([0,0], 'S', [50,50]);
+  expect(Move(rover, 'FF')).toStrictEqual([0,-2]);
+})
