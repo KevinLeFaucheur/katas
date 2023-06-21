@@ -48,3 +48,7 @@ it('should move twice forward', () => {
   let rover = MarsRover([0,0], 'S', [50,50]);
   expect(Move(rover, 'FF')).toStrictEqual([0,-2]);
 })
+it('should move back to 0,0', () => {
+  let rover = MarsRover([0,0], 'E', [50,50]);
+  expect(Move(rover, 'FFLFFLFFLFF')).toStrictEqual([0,0]);
+})

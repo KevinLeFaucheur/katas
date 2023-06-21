@@ -2,28 +2,29 @@ export const MarsRover = (location, direction, gridSize) => {
   return { location, direction, gridSize };
 }
 
-export const Move = (rover, direction) => {
-  let dir = rover.direction;
-  let loc = rover.location;
+export const Move = (rover, sequence) => {
+  let commands = sequence.split('');
 
-  switch (direction) {
-    case 'F':
-      loc = MoveInDirection(loc, dir, 1);
-      break;
-    case 'R':
-      rover.direction = TurnInDirection(dir, 1);
-      break;
-    case 'B':
-      loc = MoveInDirection(loc, dir, -1);
-      break;
-    case 'L':
-      rover.direction = TurnInDirection(dir, -1);
-      break;
-    default:
-      break;
-  }
-
-  return loc;
+  commands.forEach(command => {
+    switch (command) {
+      case 'F':
+        rover.location = MoveInDirection(rover.location, rover.direction, 1);
+        break;
+      case 'R':
+        rover.direction = TurnInDirection(rover.direction, 1);
+        break;
+      case 'B':
+        rover.location = MoveInDirection(rover.location, rover.direction, -1);
+        break;
+      case 'L':
+        rover.direction = TurnInDirection(rover.direction, -1);
+        break;
+      default:
+        break;
+    }
+  });
+    
+  return rover.location;
 }
 
 const MoveInDirection = (location, direction, sign) => {
